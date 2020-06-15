@@ -11,9 +11,9 @@ import java.util.Set;
 /**
  * Created by prateekraj on 15/6/20.
  */
-public class RemoveAction extends  ActionInterface {
+public class RemoveAction extends AbstractAction {
 
-    private ActionInterface nextAction;
+    private AbstractAction nextAction;
     private ListNodePreparator listNodePreparator;
 
     private Map<String, Node> allNodes = new HashMap<String, Node>();

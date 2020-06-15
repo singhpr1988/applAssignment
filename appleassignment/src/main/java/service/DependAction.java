@@ -8,12 +8,12 @@ import java.util.*;
 /**
  * Created by prateekraj on 15/6/20.
  */
-public class DependAction extends ActionInterface {
+public class DependAction extends AbstractAction {
 
     private Map<String, Node> parentNodes = new HashMap<String, Node>();
     private Map<String, Node> allNodes = new HashMap<String, Node>();
 
-    private ActionInterface nextAction;
+    private AbstractAction nextAction;
 
     public DependAction(String statement) {
         super(statement);

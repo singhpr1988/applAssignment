@@ -11,13 +11,13 @@ import java.util.Set;
 /**
  * Created by prateekraj on 15/6/20.
  */
-public class InstallAction extends ActionInterface {
+public class InstallAction extends AbstractAction {
 
     private Map<String, Node> allNodes = new HashMap<String, Node>();
 
     private static final String INSTALLING = "Installing";
 
-    private ActionInterface nextAction;
+    private AbstractAction nextAction;
 
     private ListNodePreparator listNodePreparator;
 

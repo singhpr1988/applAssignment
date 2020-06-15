@@ -1,6 +1,6 @@
 package processor;
 
-import service.ActionInterface;
+import service.AbstractAction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class CommandReader {
 
-    private ActionInterface actionInterface;
+    private AbstractAction abstractAction;
 
     public String performAction(String statement) {
         String result = new String();
@@ -23,7 +23,7 @@ public class CommandReader {
                     itemNames.add(containers[i]);
                 }
             }
-            result = actionInterface.performAction(itemNames, statement);
+            result = abstractAction.performAction(itemNames);
         }
         return result;
     }

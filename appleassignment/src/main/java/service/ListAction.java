@@ -8,9 +8,9 @@ import java.util.List;
 /**
  * Created by prateekraj on 15/6/20.
  */
-public class ListAction extends ActionInterface {
+public class ListAction extends AbstractAction {
 
-    private ActionInterface nextAction;
+    private AbstractAction nextAction;
 
     private ListNodePreparator listNodePreparator;
 
