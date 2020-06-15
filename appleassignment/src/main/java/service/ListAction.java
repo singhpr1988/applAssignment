@@ -14,12 +14,12 @@ public class ListAction extends AbstractAction {
 
     private ListNodePreparator listNodePreparator;
 
-    public ListAction(String statement) {
-        super(statement);
+    public ListAction() {
     }
 
-    public String performAction(List<String> itemNames) {
+    public String performAction(List<String> itemNames, String statement) {
         String commandName = itemNames.get(0);
+        super.changeStatement(statement);
         String str = new String();
         if (Command.LIST.getCommandName().equals(commandName)) {
             ListNode headNode = listNodePreparator.getHead();
@@ -27,7 +27,7 @@ public class ListAction extends AbstractAction {
                 str += headNode.getItemName() + "\n";
             }
         } else {
-            return nextAction.performAction(itemNames);
+            return nextAction.performAction(itemNames, statement);
         }
         return str;
     }

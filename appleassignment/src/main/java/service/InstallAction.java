@@ -21,12 +21,13 @@ public class InstallAction extends AbstractAction {
 
     private ListNodePreparator listNodePreparator;
 
-    public InstallAction(String statement) {
-        super(statement);
+    public InstallAction() {
+
     }
 
-    public String performAction(List<String> itemNames) {
+    public String performAction(List<String> itemNames, String statement) {
         String commandName = itemNames.get(0);
+        super.changeStatement(statement);
         if (Command.INSTALL.getCommandName().equals(commandName)) {
             itemNames.remove(0);
             String itemName = itemNames.get(0);
@@ -55,7 +56,7 @@ public class InstallAction extends AbstractAction {
                 return INSTALLING + " " + itemName;
             }
         } else {
-            return nextAction.performAction(itemNames);
+            return nextAction.performAction(itemNames, statement);
         }
         return null;
     }

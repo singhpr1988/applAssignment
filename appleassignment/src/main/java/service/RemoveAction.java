@@ -22,12 +22,12 @@ public class RemoveAction extends AbstractAction {
     private static final String INSTALLED = "installed";
     private static final String NEEDED = "is still needed";
 
-    public RemoveAction(String statement) {
-        super(statement);
+    public RemoveAction() {
     }
 
-    public String performAction(List<String> itemNames) {
+    public String performAction(List<String> itemNames, String statement) {
         String commandName = itemNames.get(0);
+        super.changeStatement(statement);
         String result = new String();
         if (Command.REMOVE.getCommandName().equals(commandName)) {
             itemNames.remove(0);
@@ -56,7 +56,7 @@ public class RemoveAction extends AbstractAction {
                 }
             }
         } else {
-            return nextAction.performAction(itemNames);
+            return nextAction.performAction(itemNames, statement);
         }
         return result;
     }

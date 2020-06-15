@@ -15,13 +15,13 @@ public class DependAction extends AbstractAction {
 
     private AbstractAction nextAction;
 
-    public DependAction(String statement) {
-        super(statement);
+    public DependAction() {
     }
 
-    public String performAction(List<String> itemNames) {
+    public String performAction(List<String> itemNames, String statement) {
         String commandName = itemNames.get(0);
         if (Command.DEPEND.getCommandName().equals(commandName)) {
+            super.changeStatement(statement);
             itemNames.remove(0);
             for (int i = 0; i < itemNames.size(); i++) {
                 String itemName = itemNames.get(i);
@@ -62,8 +62,8 @@ public class DependAction extends AbstractAction {
                 }
             }
         } else {
-            return nextAction.performAction(itemNames);
+            return nextAction.performAction(itemNames, statement);
         }
-        return null;
+        return this.getStatement();
     }
 }
