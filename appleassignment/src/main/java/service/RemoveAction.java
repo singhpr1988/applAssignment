@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * Created by prateekraj on 15/6/20.
  */
-public class RemoveAction implements  ActionInterface {
+public class RemoveAction extends  ActionInterface {
 
     private ActionInterface nextAction;
     private ListNodePreparator listNodePreparator;
@@ -22,7 +22,11 @@ public class RemoveAction implements  ActionInterface {
     private static final String INSTALLED = "installed";
     private static final String NEEDED = "is still needed";
 
-    public String performAction(List<String> itemNames, String statement) {
+    public RemoveAction(String statement) {
+        super(statement);
+    }
+
+    public String performAction(List<String> itemNames) {
         String commandName = itemNames.get(0);
         String result = new String();
         if (Command.REMOVE.getCommandName().equals(commandName)) {
@@ -52,7 +56,7 @@ public class RemoveAction implements  ActionInterface {
                 }
             }
         } else {
-            return nextAction.performAction(itemNames, statement);
+            return nextAction.performAction(itemNames);
         }
         return result;
     }

@@ -8,14 +8,18 @@ import java.util.*;
 /**
  * Created by prateekraj on 15/6/20.
  */
-public class DependAction implements ActionInterface {
+public class DependAction extends ActionInterface {
 
     private Map<String, Node> parentNodes = new HashMap<String, Node>();
     private Map<String, Node> allNodes = new HashMap<String, Node>();
 
     private ActionInterface nextAction;
 
-    public String performAction(List<String> itemNames, String statement) {
+    public DependAction(String statement) {
+        super(statement);
+    }
+
+    public String performAction(List<String> itemNames) {
         String commandName = itemNames.get(0);
         if (Command.DEPEND.getCommandName().equals(commandName)) {
             itemNames.remove(0);
@@ -58,7 +62,7 @@ public class DependAction implements ActionInterface {
                 }
             }
         } else {
-            return nextAction.performAction(itemNames, statement);
+            return nextAction.performAction(itemNames);
         }
         return null;
     }

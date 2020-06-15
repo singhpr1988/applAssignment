@@ -8,7 +8,8 @@ public enum Command {
     DEPEND("DEPEND"),
     INSTALL("INSTALL"),
     REMOVE("REMOVE"),
-    LIST("LIST");
+    LIST("LIST"),
+    END("END");
 
     private String commandName;
 

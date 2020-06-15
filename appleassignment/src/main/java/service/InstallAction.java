@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * Created by prateekraj on 15/6/20.
  */
-public class InstallAction implements ActionInterface {
+public class InstallAction extends ActionInterface {
 
     private Map<String, Node> allNodes = new HashMap<String, Node>();
 
@@ -21,7 +21,11 @@ public class InstallAction implements ActionInterface {
 
     private ListNodePreparator listNodePreparator;
 
-    public String performAction(List<String> itemNames, String statement) {
+    public InstallAction(String statement) {
+        super(statement);
+    }
+
+    public String performAction(List<String> itemNames) {
         String commandName = itemNames.get(0);
         if (Command.INSTALL.getCommandName().equals(commandName)) {
             itemNames.remove(0);
@@ -51,7 +55,7 @@ public class InstallAction implements ActionInterface {
                 return INSTALLING + " " + itemName;
             }
         } else {
-            return nextAction.performAction(itemNames, statement);
+            return nextAction.performAction(itemNames);
         }
         return null;
     }
