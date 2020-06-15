@@ -32,7 +32,6 @@ public class Runner {
         CommandReader commandReader = new CommandReader();
         commandReader.setAbstractActionChain(dependAction);
 
-        //String str = "DEPEND    TELNET TCPIP   NETCARD";
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String input = null;
         try {

@@ -54,6 +54,9 @@ public class DependAction extends AbstractAction {
                         parentNodes.add(parentNode);
                         super.getCentralService().fetchAllNodesMap().get(itemName).setParentNodes(parentNodes);
 
+                        if (childNodes == null) {
+                            childNodes = new LinkedHashSet<Node>();
+                        }
                         childNodes.add(super.getCentralService().fetchAllNodesMap().get(itemName));
                         parentNode.setChildNodes(childNodes);
                     }
