@@ -10,10 +10,12 @@ public class Runner {
 
     public static void main(String args[]) {
 
+        ListNodePreparator listNodePreparator = new ListNodePreparator();
+
         AbstractAction dependAction = new DependAction();
-        AbstractAction installAction = new InstallAction();
-        AbstractAction listAction = new ListAction();
-        AbstractAction removeAction = new RemoveAction();
+        AbstractAction installAction = new InstallAction(listNodePreparator);
+        AbstractAction listAction = new ListAction(listNodePreparator);
+        AbstractAction removeAction = new RemoveAction(listNodePreparator);
 
         dependAction.setNextAction(installAction);
         installAction.setNextAction(listAction);

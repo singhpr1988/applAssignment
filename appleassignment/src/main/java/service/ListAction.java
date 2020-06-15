@@ -15,6 +15,10 @@ public class ListAction extends AbstractAction {
     public ListAction() {
     }
 
+    public ListAction(ListNodePreparator listNodePreparator) {
+        this.listNodePreparator = listNodePreparator;
+    }
+
     public String performAction(List<String> itemNames, String statement) {
         String commandName = itemNames.get(0);
         super.changeStatement(statement);
