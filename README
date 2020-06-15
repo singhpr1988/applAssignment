@@ -1,0 +1,13 @@
+
+Making use of JAVA as the primary language for the submission purpose of assignment
+
+As it's a maven project, with the pom.xml file present inside folder appleassignment
+
+Input can be taken from console and output will also be displayed in the console
+Runner.java is the class that takes care of reading from console && displaying the output to console
+
+
+/*
+I tried to make it as decoupled as I can, but lack of time didn't allow me to write test cases for
+the same.
+*/
