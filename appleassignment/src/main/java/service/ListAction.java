@@ -22,6 +22,8 @@ public class ListAction implements ActionInterface {
             while (headNode != null) {
                 str += headNode.getItemName() + "\n";
             }
+        } else {
+            return nextAction.performAction(itemNames, statement);
         }
         return str;
     }

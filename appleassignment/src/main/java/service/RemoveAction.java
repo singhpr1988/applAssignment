@@ -51,6 +51,8 @@ public class RemoveAction implements  ActionInterface {
                     recursiveMethodToRemoveItems(node);
                 }
             }
+        } else {
+            return nextAction.performAction(itemNames, statement);
         }
         return result;
     }

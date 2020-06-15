@@ -50,6 +50,8 @@ public class InstallAction implements ActionInterface {
                 listNodePreparator.prepareChainOfListNodes(itemName);
                 return INSTALLING + " " + itemName;
             }
+        } else {
+            return nextAction.performAction(itemNames, statement);
         }
         return null;
     }

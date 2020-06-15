@@ -58,7 +58,7 @@ public class DependAction implements ActionInterface {
                 }
             }
         } else {
-            nextAction.performAction(itemNames, statement);
+            return nextAction.performAction(itemNames, statement);
         }
         return null;
     }
