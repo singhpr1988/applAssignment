@@ -3,9 +3,7 @@ package service;
 import commands.Command;
 import processor.Node;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -13,7 +11,7 @@ import java.util.Set;
  */
 public class InstallAction extends AbstractAction {
 
-    private Map<String, Node> allNodes = new HashMap<String, Node>();
+    //private Map<String, Node> allNodes = new HashMap<String, Node>();
 
     private static final String INSTALLING = "Installing";
 
@@ -23,7 +21,8 @@ public class InstallAction extends AbstractAction {
 
     }
 
-    public InstallAction(ListNodePreparator listNodePreparator) {
+    public InstallAction(ListNodePreparator listNodePreparator, CentralService centralService) {
+        super(centralService);
         this.listNodePreparator = listNodePreparator;
     }
 
@@ -33,8 +32,8 @@ public class InstallAction extends AbstractAction {
         if (Command.INSTALL.getCommandName().equals(commandName)) {
             itemNames.remove(0);
             String itemName = itemNames.get(0);
-            if (allNodes.keySet().contains(itemName)) {
-                Node node = allNodes.get(itemName);
+            if (super.getCentralService().fetchAllNodesMap().keySet().contains(itemName)) {
+                Node node = super.getCentralService().fetchAllNodesMap().get(itemName);
                 Set<Node> childNodes = node.getChildNodes();
                 if (childNodes == null || childNodes.isEmpty()) {
                     if (!node.isItemInstalled()) {

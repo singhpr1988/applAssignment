@@ -10,10 +10,11 @@ import java.util.*;
  */
 public class DependAction extends AbstractAction {
 
-    private Map<String, Node> parentNodes = new HashMap<String, Node>();
-    private Map<String, Node> allNodes = new HashMap<String, Node>();
-
     public DependAction() {
+    }
+
+    public DependAction(CentralService centralService) {
+        super(centralService);
     }
 
     public String performAction(List<String> itemNames, String statement) {
@@ -21,40 +22,39 @@ public class DependAction extends AbstractAction {
         if (Command.DEPEND.getCommandName().equals(commandName)) {
             super.changeStatement(statement);
             itemNames.remove(0);
+            Node parentNode = null;
             for (int i = 0; i < itemNames.size(); i++) {
                 String itemName = itemNames.get(i);
-                Node parentNode = null;
-                if (!allNodes.keySet().contains(itemName)) {
+                if (!super.getCentralService().fetchAllNodesMap().keySet().contains(itemName)) {
                     Node node = new Node(itemName);
                     if (i == 0) {
                         parentNode = node;
-                        parentNodes.put(node.getItemName(), node);
                     }
-                    allNodes.put(node.getItemName(), node);
+                    super.getCentralService().fetchAllNodesMap().put(node.getItemName(), node);
                     if (i != 0) {
                         Set<Node> parentNodes = node.getParentNodes();
                         Set<Node> childNodes = parentNode.getChildNodes();
                         if (parentNodes == null) {
-                            parentNodes = new HashSet<Node>();
+                            parentNodes = new LinkedHashSet<Node>();
                         }
                         parentNodes.add(parentNode);
                         node.setParentNodes(parentNodes);
 
                         if (childNodes == null) {
-                            childNodes = new HashSet<Node>();
+                            childNodes = new LinkedHashSet<Node>();
                         }
                         childNodes.add(node);
                         parentNode.setChildNodes(childNodes);
                     }
                 } else {
-                    parentNode = allNodes.get(itemNames.get(0));
+                    parentNode = super.getCentralService().fetchAllNodesMap().get(itemNames.get(0));
                     if (i != 0) {
-                        Set<Node> parentNodes = allNodes.get(itemName).getParentNodes();
+                        Set<Node> parentNodes = super.getCentralService().fetchAllNodesMap().get(itemName).getParentNodes();
                         Set<Node> childNodes = parentNode.getChildNodes();
                         parentNodes.add(parentNode);
-                        allNodes.get(itemName).setParentNodes(parentNodes);
+                        super.getCentralService().fetchAllNodesMap().get(itemName).setParentNodes(parentNodes);
 
-                        childNodes.add(allNodes.get(itemName));
+                        childNodes.add(super.getCentralService().fetchAllNodesMap().get(itemName));
                         parentNode.setChildNodes(childNodes);
                     }
                 }

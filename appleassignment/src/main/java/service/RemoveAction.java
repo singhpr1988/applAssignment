@@ -3,9 +3,7 @@ package service;
 import commands.Command;
 import processor.Node;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -15,8 +13,6 @@ public class RemoveAction extends AbstractAction {
 
     private ListNodePreparator listNodePreparator;
 
-    private Map<String, Node> allNodes = new HashMap<String, Node>();
-
     private static final String REMOVING = "Removing";
     private static final String INSTALLED = "installed";
     private static final String NEEDED = "is still needed";
@@ -24,7 +20,8 @@ public class RemoveAction extends AbstractAction {
     public RemoveAction() {
     }
 
-    public RemoveAction(ListNodePreparator listNodePreparator) {
+    public RemoveAction(ListNodePreparator listNodePreparator, CentralService centralService) {
+        super(centralService);
         this.listNodePreparator = listNodePreparator;
     }
 
@@ -35,10 +32,10 @@ public class RemoveAction extends AbstractAction {
         if (Command.REMOVE.getCommandName().equals(commandName)) {
             itemNames.remove(0);
             String itemName = itemNames.get(0);
-            if (!allNodes.containsKey(itemName)) {
+            if (!super.getCentralService().fetchAllNodesMap().containsKey(itemName)) {
                 result += itemName + " is not " + INSTALLED;
             } else {
-                Node node = allNodes.get(itemName);
+                Node node = super.getCentralService().fetchAllNodesMap().get(itemName);
                 Set<Node> parenNodes = node.getParentNodes();
                 if (parenNodes != null && parenNodes.size() > 0) {
                     if (node.isItemInstalled()) {
@@ -67,7 +64,7 @@ public class RemoveAction extends AbstractAction {
     private String recursiveMethodToRemoveItems(Node node) {
         String str = new String();
         if (node.isItemInstalled()) {
-            allNodes.remove(node.getItemName());
+            super.getCentralService().fetchAllNodesMap().remove(node.getItemName());
             Set<Node> parentNodes = node.getParentNodes();
             if (parentNodes == null || parentNodes.isEmpty()) {
                 listNodePreparator.updateListOfNodesPostDeletion(node.getItemName());

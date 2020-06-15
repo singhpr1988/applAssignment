@@ -1,3 +1,4 @@
+import processor.CommandReader;
 import service.*;
 
 import java.util.ArrayList;
@@ -11,24 +12,22 @@ public class Runner {
     public static void main(String args[]) {
 
         ListNodePreparator listNodePreparator = new ListNodePreparator();
+        CentralService centralService = new CentralService();
 
-        AbstractAction dependAction = new DependAction();
-        AbstractAction installAction = new InstallAction(listNodePreparator);
-        AbstractAction listAction = new ListAction(listNodePreparator);
-        AbstractAction removeAction = new RemoveAction(listNodePreparator);
+        AbstractAction dependAction = new DependAction(centralService);
+        AbstractAction installAction = new InstallAction(listNodePreparator, centralService);
+        AbstractAction listAction = new ListAction(listNodePreparator, centralService);
+        AbstractAction removeAction = new RemoveAction(listNodePreparator, centralService);
 
         dependAction.setNextAction(installAction);
         installAction.setNextAction(listAction);
         listAction.setNextAction(removeAction);
 
-        String str = "DEPEND    TELNET TCPIP   NETCARD";
-        String containers[] = str.split(" ");
+        CommandReader commandReader = new CommandReader();
+        commandReader.setAbstractActionChain(dependAction);
 
-        List<String> inputItems = new ArrayList<String>();
-        for (int i = 0; i < containers.length; i++) {
-            containers[i] = containers[i].trim();
-            inputItems.add(containers[i]);
-        }
+        String str = "DEPEND    TELNET TCPIP   NETCARD";
+        commandReader.performAction(str);
     }
 
 }

@@ -15,7 +15,8 @@ public class ListAction extends AbstractAction {
     public ListAction() {
     }
 
-    public ListAction(ListNodePreparator listNodePreparator) {
+    public ListAction(ListNodePreparator listNodePreparator, CentralService centralService) {
+        super(centralService);
         this.listNodePreparator = listNodePreparator;
     }
 

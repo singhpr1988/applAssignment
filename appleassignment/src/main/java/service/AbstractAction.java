@@ -9,6 +9,11 @@ public abstract class AbstractAction {
 
     private String statement;
     private AbstractAction nextAction;
+    private CentralService centralService;
+
+    public AbstractAction(CentralService centralService) {
+        this.centralService = centralService;
+    }
 
     public AbstractAction() {
     }
@@ -34,5 +39,13 @@ public abstract class AbstractAction {
 
     public String getStatement() {
         return statement;
+    }
+
+    public CentralService getCentralService() {
+        return centralService;
+    }
+
+    public void setCentralService(CentralService centralService) {
+        this.centralService = centralService;
     }
 }
