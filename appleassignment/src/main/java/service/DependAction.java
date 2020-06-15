@@ -13,8 +13,6 @@ public class DependAction extends AbstractAction {
     private Map<String, Node> parentNodes = new HashMap<String, Node>();
     private Map<String, Node> allNodes = new HashMap<String, Node>();
 
-    private AbstractAction nextAction;
-
     public DependAction() {
     }
 
@@ -62,7 +60,7 @@ public class DependAction extends AbstractAction {
                 }
             }
         } else {
-            return nextAction.performAction(itemNames, statement);
+            return super.getNextAction().performAction(itemNames, statement);
         }
         return this.getStatement();
     }

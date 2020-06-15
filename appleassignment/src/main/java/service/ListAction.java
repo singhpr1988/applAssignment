@@ -10,8 +10,6 @@ import java.util.List;
  */
 public class ListAction extends AbstractAction {
 
-    private AbstractAction nextAction;
-
     private ListNodePreparator listNodePreparator;
 
     public ListAction() {
@@ -27,7 +25,7 @@ public class ListAction extends AbstractAction {
                 str += headNode.getItemName() + "\n";
             }
         } else {
-            return nextAction.performAction(itemNames, statement);
+            return super.getNextAction().performAction(itemNames, statement);
         }
         return str;
     }

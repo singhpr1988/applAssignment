@@ -17,8 +17,6 @@ public class InstallAction extends AbstractAction {
 
     private static final String INSTALLING = "Installing";
 
-    private AbstractAction nextAction;
-
     private ListNodePreparator listNodePreparator;
 
     public InstallAction() {
@@ -56,7 +54,7 @@ public class InstallAction extends AbstractAction {
                 return INSTALLING + " " + itemName;
             }
         } else {
-            return nextAction.performAction(itemNames, statement);
+            return super.getNextAction().performAction(itemNames, statement);
         }
         return null;
     }

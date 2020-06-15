@@ -10,7 +10,11 @@ import java.util.List;
  */
 public class CommandReader {
 
-    private AbstractAction abstractAction;
+    private AbstractAction abstractActionChain;
+
+    public void setAbstractActionChain(AbstractAction abstractActionChain) {
+        this.abstractActionChain = abstractActionChain;
+    }
 
     public String performAction(String statement) {
         String result = new String();
@@ -23,7 +27,7 @@ public class CommandReader {
                     itemNames.add(containers[i]);
                 }
             }
-            result = abstractAction.performAction(itemNames);
+            result = abstractActionChain.performAction(itemNames, statement);
         }
         return result;
     }

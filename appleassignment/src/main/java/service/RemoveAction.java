@@ -13,7 +13,6 @@ import java.util.Set;
  */
 public class RemoveAction extends AbstractAction {
 
-    private AbstractAction nextAction;
     private ListNodePreparator listNodePreparator;
 
     private Map<String, Node> allNodes = new HashMap<String, Node>();
@@ -56,7 +55,7 @@ public class RemoveAction extends AbstractAction {
                 }
             }
         } else {
-            return nextAction.performAction(itemNames, statement);
+            return super.getNextAction().performAction(itemNames, statement);
         }
         return result;
     }
