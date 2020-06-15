@@ -28,6 +28,7 @@ public class ListAction extends AbstractAction {
             ListNode headNode = listNodePreparator.getHead();
             while (headNode != null) {
                 str += headNode.getItemName() + "\n";
+                headNode = headNode.getNext();
             }
         } else {
             return super.getNextAction().performAction(itemNames, statement);
