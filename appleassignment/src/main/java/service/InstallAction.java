@@ -74,7 +74,7 @@ public class InstallAction extends AbstractAction {
                 node.setItemInstalled(true);
                 str += INSTALLING + " " + node.getItemName() + "\n";
             } else {
-                str += node.getItemName() + " " + "is already installed";
+                //str += node.getItemName() + " " + "is already installed";
             }
         }
         return str;

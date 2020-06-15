@@ -35,8 +35,9 @@ public class Runner {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String input = null;
         try {
-            while ((input = br.readLine()) != null)
-            commandReader.performAction(input);
+            while ((input = br.readLine()) != null) {
+                System.out.println(commandReader.performAction(input));
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
